@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fit Bottle</title>
+  <script>
+    const outputMarkdown = function() {
+      let battler1Username = document.querySelector("[name='battler1Username']").value,
+          battler1Url1 = document.querySelector("[name='battler1Url1']").value,
+          battler1Url2 = document.querySelector("[name='battler1Url2']").value,
+          battler1Url3 = document.querySelector("[name='battler1Url3']").value,
+          battler2Username = document.querySelector("[name='battler2Username']").value,
+          battler2Url1 = document.querySelector("[name='battler2Url1']").value,
+          battler2Url2 = document.querySelector("[name='battler2Url2']").value,
+          battler2Url3 = document.querySelector("[name='battler2Url3']").value;
+      let comment1 = `/u/${battler1Username} vs /u/${battler2Username}`;
+
+      let comment2 = `/u/${battler1Username} - [fit](${battler1Url1})`;
+      if (battler1Url2) {
+        comment2 += ` - [alt](${battler1Url2})`;
+      }
+      if (battler1Url3) {
+        comment2 += ` - [alt](${battler1Url3})`;
+      }
+
+      let comment3 = `/u/${battler2Username} - [fit](${battler2Url1})`;
+      if (battler2Url2) {
+        comment3 += ` - [alt](${battler2Url2})`;
+      }
+      if (battler2Url3) {
+        comment3 += ` - [alt](${battler2Url3})`;
+      }
+
+      let output = document.querySelector('#output');
+      output.textContent = `${comment1}\n\n${comment2}\n\n${comment3}`;
+
+      return true;
+    }
+  </script>
+  <style>
+    .field label {
+      display: block;
+    }
+    #output {
+      white-space: pre;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <form onsubmit="return false;">
+    <fieldset>
+      <legend>Battler 1</legend>
+      <div class="field">
+        <label for="battler1Username">Username</label>
+        <input type="text" name="battler1Username" required>
+      </div>
+      <div class="field">
+        <label for="battler1Url1">URL 1</label>
+        <input type="url" name="battler1Url1" required>
+      </div>
+      <div class="field">
+        <label for="battler1Url2">URL 2</label>
+        <input type="url" name="battler1Url2">
+      </div>
+      <div class="field">
+        <label for="battler1Url3">URL 3</label>
+        <input type="url" name="battler1Url3">
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Battler 2</legend>
+      <div class="field">
+        <label for="battler2Username">Username</label>
+        <input type="text" name="battler2Username" required>
+      </div>
+      <div class="field">
+        <label for="battler2Url1">URL 1</label>
+        <input type="url" name="battler2Url1" required>
+      </div>
+      <div class="field">
+        <label for="battler2Url2">URL 2</label>
+        <input type="url" name="battler2Url2">
+      </div>
+      <div class="field">
+        <label for="battler2Url3">URL 3</label>
+        <input type="url" name="battler2Url3">
+      </div>
+    </fieldset>
+    <button onclick="outputMarkdown();">do it</button>
+  </form>
+  <div id="output">
+  </div>
+</body>
+</html>
